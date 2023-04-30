@@ -3,26 +3,20 @@ package main
 import "fmt"
 
 func main() {
-	// 変数の勉強
-	// 不動小数点
-	var fl64 float64 = 3.14
-	fmt.Println(fl64)
+	// 算術演算子
+	fmt.Println(1 + 3)
+	fmt.Println(1 - 3)
+	fmt.Println(1 * 3)
 
-	// bool
-	var b bool = true
-  fmt.Println(b)
+	s := "ABC"
+	s += "DEF"
+	fmt.Println(s)
 
-	// 配列
-	var arr1 [3]int
-	fmt.Println(arr1)
+	// 比較演算子
+	fmt.Println(1 == 1)
+	fmt.Println(1!= 1)
+	fmt.Println(3 > 1)
 
-	var arr2 [3]string = [3]string{"a", "b"}
-	fmt.Println(arr2)
-
-	var arr3 [3]int = [3]int{1, 2, 3}
-	fmt.Println(arr3)
-	fmt.Println(arr3[2])
-
-	// 配列要素数カウント
-	fmt.Println(len(arr1))
+	// 論理演算子
+	fmt.Println(true || true == false)
 }
