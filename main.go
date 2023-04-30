@@ -2,32 +2,27 @@ package main
 
 import "fmt"
 
-func outer() {
-	var s4 string = "hello"
-	fmt.Println(s4)
-}
-
 func main() {
 	// 変数の勉強
-	var i int = 100
-	
-	fmt.Println(i)
+	// 不動小数点
+	var fl64 float64 = 3.14
+	fmt.Println(fl64)
 
-	var s string = "hello"
-	fmt.Println(s)
+	// bool
+	var b bool = true
+  fmt.Println(b)
 
-	var t, f bool = true, false
-	fmt.Println(t, f)
+	// 配列
+	var arr1 [3]int
+	fmt.Println(arr1)
 
-	var (
-		a int = 10
-    b bool = true
-	)
-	fmt.Println(a, b)
+	var arr2 [3]string = [3]string{"a", "b"}
+	fmt.Println(arr2)
 
-	// 暗黙的定義
-	i4 := 400
-	fmt.Println(i4)
+	var arr3 [3]int = [3]int{1, 2, 3}
+	fmt.Println(arr3)
+	fmt.Println(arr3[2])
 
-	outer()
+	// 配列要素数カウント
+	fmt.Println(len(arr1))
 }
