@@ -2,77 +2,153 @@ package main
 
 import (
 	"fmt"
+	// "strconv"
+	// "os"
+	"time"
 )
 
-// func plus(x int, y int) int {
-// 	return x + y
-// }
+func main() {
+	// a := 0
+	// if a == 2 {
+	// 	fmt.Println("a is 2")
+	// } else if a == 1 {
+	// 	fmt.Println("a is not 1")
+	// } else {
+	// 	fmt.Println("a is neither 1 nor 2")
+	// }
 
-// func div(x, y int) (int, int) {
-// 	q := x / y
-// 	r := x % y
-// 	return q, r
-// }
+	// if b := 100; b == 100 {
+	// 	fmt.Println("b is 100")
+  // }
 
-// func double(price int) (result int) {
-// 	// resultは返り値
-// 	result = price * 2
-//   return
-// }
+	// エラーハンドリング
+	// var s string = "error"
 
-// 関数を返す関数
-// func returnFunc() func()  {
-// 	return func() {
-// 		fmt.Println("return func()")
-// 	}
-// }
+	// i, err := strconv.Atoi(s)
+	// if err != nil {
+	// 	fmt.Println("error")
+	// }
+	// fmt.Printf("i = %T\n", i)
 
-// クロージャー
-// func later() func(string) string {
-// 	var store string
-// 	return func(next string) string {
-// 		s := store
-// 		store = next
-// 		return s
-// 	}
-// }
+	// for
+	// i := 0
+	// for {
+	// 	i++
+	// 	if i == 10 {
+  //     break
+  //   }
+	// 	fmt.Println(i+1)
+	// }
 
-// ジェネレーター
-func integers() func() int {
-	i := 0
-	return func() int {
-    i++
-    return i
-  }
+	// point := 0
+	// for point < 10 {
+	// 	fmt.Println(point)
+  //   point++
+	// }
+
+	// arr := [3]int{1, 2, 3}
+	// for i:=0; i < len(arr); i++ {
+	// 	fmt.Println(arr[i])
+	// }
+
+	// arr := [3]int{1, 2, 3}
+	// for i, v := range arr {
+	// 	fmt.Println(i, v)
+	// }
+
+	// sl := []string{"a", "b", "c"}
+	// for i, v := range sl {
+  //   fmt.Println(i, v)
+  // }
+
+	// m := map[string]int{"a": 1, "b": 2, "c" : 3}
+	// for k, v := range m {
+  //   fmt.Println(k, v)
+  // }
+
+	// var x interface{} = 3.41
+	// i := x.(int)
+	// fmt.Println(i + 2)
+
+	// f, isFloat64 := x.(float64)
+	// fmt.Println(f + 2, isFloat64)
+
+	// if x == nil {
+	// 	fmt.Println("none")
+	// } else if i, isInt := x.(int); isInt {
+	// 	fmt.Println(i + 2)
+	// } else if f, isFloat := x.(float64); isFloat {
+	// 	fmt.Println(f + 2, isFloat)
+  // } else if s, isString := x.(string); isString {
+	// 	fmt.Println(s)
+	// } else {
+	// 	fmt.Println("unknown")
+	// }
+
+	// anything(3.11)
+
+	// defer
+	// TestDefer()
+
+	// // defer func() {
+	// // 	fmt.Println("1")
+	// // 	fmt.Println("2")
+	// // 	fmt.Println("3")
+	// // }()
+
+	// RunDefer()
+
+	// file, err := os.Create("test.go")
+	// if err!= nil {
+  //   panic(err)
+  // }
+	// defer file.Close()
+	// file.Write([]byte("package main\n"))
+
+	// goroutin
+	go sub()
+	// go sub()
+	for {
+		fmt.Println("main")
+		time.Sleep(200 * time.Millisecond)
+	}
 }
 
-func main() {
-	// i := plus(1, 2)
-	// fmt.Println(i)
+// 初期化処理
+// func init() {
+// 	fmt.Println("init")
+// }
+// func init() {
+// 	fmt.Println("reinit")
+// }
 
-	// i2, i3 := div(1, 2)
-	// fmt.Println(i2, i3)
+func sub() {
+	for {
+		fmt.Println("sub")
+		time.Sleep(100 * time.Millisecond)
+	}
+}
 
-	// i4 := double(100)
-	// fmt.Println(i4)
+func RunDefer() {
+	defer fmt.Println("1")
+	defer fmt.Println("2")
+	defer fmt.Println("3")
+}
 
-	// 無名関数
-	// f := func(x, y int) int {
-	// 	return x + y
-	// }
-	// i := f(1, 2)
-	// fmt.Println(i)
+func TestDefer() {
+	defer fmt.Println("defer")
+	fmt.Println("START")
+}
 
-	// f := returnFunc()
-	// f()
-
-	// f := later()
-	// fmt.Println(f("a"))
-
-	ints := integers()
-	fmt.Println(ints())
-	fmt.Println(ints())
-	fmt.Println(ints())
-	fmt.Println(ints())
-	fmt.Println(ints())
+func anything(a interface{}) {
+	switch v:= a.(type) {
+	case int:
+		fmt.Println(v)
+	case float64:
+		fmt.Println(v + 1222)
+	case string:
+		fmt.Println(v)
+	default:
+		fmt.Println("unknown")
+}
 }
