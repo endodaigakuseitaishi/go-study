@@ -1,4 +1,6 @@
 # go-study
+##  channel references for zenn
+https://zenn.dev/hsaki/books/golang-concurrency/viewer/chaninternal
 
 ## channel 
 ### ch定義
