@@ -4,103 +4,160 @@ import (
 	"fmt"
 	// "strconv"
 	// "os"
-	// "time"
 )
 
 func main() {
-	// var sl []int
-	// fmt.Println(sl)
+	// channel
+	// var ch1 chan int 
 
-	// var sl2 =  []int{100, 200}
-	// fmt.Println(sl2)
+	// 受信専用
+	// var ch2 <-chan int
 
-	// sl3 := []int{100, 200, 300}
-	// fmt.Println(sl3)
+	// 送信専用
+	// var ch2 chan<- int
 
-	// sl4 := make([]int, 5)
-	// fmt.Println(sl4)
+	// ch1 = make(chan int)
+	// ch2 := make(chan int)
 
-	// sl2[0] = 1000
-	// fmt.Println(sl2)
+	// fmt.Println(cap(ch1))
+	// fmt.Println(cap(ch2))
 
-	// sl5 := []int{100, 200, 300, 40}
-	// fmt.Println(sl5)
-	// fmt.Println(sl5[len(sl5)-1])
+	// ch3 := make(chan int, 5)
+	// fmt.Println(cap(ch3))
 
-	// sl := []int{100, 200, 300, 400}
-	// fmt.Println(sl)
+	// ch3に送信
+	// ch3 <- 1
+	// fmt.Println(len(ch3))
 
-	// // スライスは要素が可変長
-	// sl = append(sl, 500)
-	// fmt.Println(sl)
+	// iに送信
+	// i := <-ch3
+	// fmt.Println(i)
+	// i2 := <-ch3
+	// fmt.Println(i2)
 
-	// sl = append(sl, 600, 700, 800)
-	// fmt.Println(sl)
+	// ch3 <- 1
+	// fmt.Println("========")
+	// fmt.Println(len(ch3))
+	// fmt.Println(<-ch3)
+	// ch3 <- 2
+	// ch3 <- 3
+	// ch3 <- 4
+	// ch3 <- 5
+	// ch3 <- 6
 
-	// sl2 := make([]int, 5)
-	// fmt.Println(sl2)
+	// ch4 := make(chan int)
+	// ch5 := make(chan int)
 
-	// fmt.Println(len(sl2))
-	// fmt.Println(cap(sl2))
+	// go reciever(ch4)
+	// go reciever(ch5)
 
-	// sl3 := make([]int, 5, 10)
-	// fmt.Println(sl3)
+	// i := 0
 
-	// fmt.Println(len(sl3))
-	// fmt.Println(cap(sl3))
+	// for i < 100 {
+	// 	ch4 <- i
+	// 	ch5 <- i
+	// 	time.Sleep(50*time.Millisecond)
+	// 	i++
+	// }
 
-	// sl3 = append(sl3, 100, 200, 300, 400, 500)
-	// fmt.Println(sl3)
+	// ch6 := make(chan int, 2)
+	// go reciever("1.",ch6)
+	// go reciever("2.",ch6)
+	// go reciever("3.",ch6)
 
-	// copy
-// 	sl := []int{100, 200, 300, 400, 500}
-// 	sl2 := make([]int, 5, 10)
-// 	n := copy(sl2, sl)
-// // nはコピーした数
-// 	fmt.Println(n, sl2)
+	// i := 0
+	// for i < 100 {
+  //   ch6 <- i
+  //   i++
+  // }
+	// close(ch6)
+	// time.Sleep(3*time.Second)
 
-// sl := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
-// for i, v := range sl {
-// 	fmt.Println(i, v)
+	// chが空かつchがcloseでfalseを返す
+	// i, ok := <-ch6
+	// fmt.Println(i, ok)
 
-// fmt.Println(Sum(1, 2, 3))
+	// ch7 := make(chan int, 3)
+	// ch7 <- 1
+	// ch7 <- 2
+	// ch7 <- 3
+  // close(ch7)
 
-// sl := []int{100, 200, 300, 4}
-// fmt.Println(Sum(sl...))
+	// for i := range ch7 {
+	// 	fmt.Println(i)
+	// }
 
-// var m = map[string]int{"A": 100, "B": 200, "C": 300}
-// fmt.Println(m)
+	// ch8 := make(chan int, 2)
+	// ch9 := make(chan string, 2)
 
-// m2 := make(map[int]string)
-// fmt.Println(m2)
+	// ch9 <- "a"
+	// ch9 <- "b"
+	// ch8 <- 2000
+	// ch8 <- 1000
+	// v1 := <-ch8
+	// v2 := <-ch9
+	// fmt.Println(v1)
+	// fmt.Println(v2)
 
-// m2[1] = "japan"
-// m2[2] = "korea"
-// fmt.Println(m2)
-// fmt.Println(m2[1])
+	// selectの中はランダム選択
+	// select {
+	// case v1 := <-ch8:
+	// 	fmt.Println(v1 + 1000)
+	// case v2 := <-ch9:
+	// 	fmt.Println(v2 + "AAA")
+	// default:
+	// 	fmt.Println("どちらでも")
+	// }
 
-// // ハンドリングもできる
-// // s, ok := m2[4]
-// // if !ok {
-// // 	fmt.Println("not found")
-// // }
-// // fmt.Println(s, ok)
+	ch10 := make(chan int)
+	ch11 := make(chan int)
+	ch12 := make(chan int)
 
-// m2[3] = "china"
-// fmt.Println(m2)
+	// reciever
+	go func() {
+		for{
+			i := <-ch10
+			ch11 <- i*2
+		}
+	}()
 
-// delete(m2, 3)
-
-m := map[string]int{"A": 100, "B": 20}
-for i, v := range m {
-	fmt.Println(i, v)
+	go func() {
+		for{
+			i2 := <-ch11
+			ch12 <- i2-2
+		}
+	}()
+	
+	n := 0
+	for {
+		select {
+			case ch10 <- n:
+				n++
+			case i3 := <-ch12:
+				fmt.Println("received!!!", i3)
+		}
+		if n >= 100 {
+      break
+    }
+	}
 }
-}
 
-func Sum(s ...int) int {
-	total := 0
-  for _, v := range s {
-    total += v
-  }
-  return total
-}
+// func reciever(c chan int) {
+// 	for {
+// 		i := <-c
+// 		fmt.Println(i + 3)
+// 	}
+// }
+
+// func reciever(name string, c chan int) {
+// 	for {
+// 		i, ok := <-c
+// 		if !ok {
+// 			break
+// 		}
+// 		fmt.Println(name, i)
+// 	}
+// 	fmt.Println(name, "done")
+// }
+
+
