@@ -4,151 +4,103 @@ import (
 	"fmt"
 	// "strconv"
 	// "os"
-	"time"
+	// "time"
 )
 
 func main() {
-	// a := 0
-	// if a == 2 {
-	// 	fmt.Println("a is 2")
-	// } else if a == 1 {
-	// 	fmt.Println("a is not 1")
-	// } else {
-	// 	fmt.Println("a is neither 1 nor 2")
-	// }
+	// var sl []int
+	// fmt.Println(sl)
 
-	// if b := 100; b == 100 {
-	// 	fmt.Println("b is 100")
-  // }
+	// var sl2 =  []int{100, 200}
+	// fmt.Println(sl2)
 
-	// エラーハンドリング
-	// var s string = "error"
+	// sl3 := []int{100, 200, 300}
+	// fmt.Println(sl3)
 
-	// i, err := strconv.Atoi(s)
-	// if err != nil {
-	// 	fmt.Println("error")
-	// }
-	// fmt.Printf("i = %T\n", i)
+	// sl4 := make([]int, 5)
+	// fmt.Println(sl4)
 
-	// for
-	// i := 0
-	// for {
-	// 	i++
-	// 	if i == 10 {
-  //     break
-  //   }
-	// 	fmt.Println(i+1)
-	// }
+	// sl2[0] = 1000
+	// fmt.Println(sl2)
 
-	// point := 0
-	// for point < 10 {
-	// 	fmt.Println(point)
-  //   point++
-	// }
+	// sl5 := []int{100, 200, 300, 40}
+	// fmt.Println(sl5)
+	// fmt.Println(sl5[len(sl5)-1])
 
-	// arr := [3]int{1, 2, 3}
-	// for i:=0; i < len(arr); i++ {
-	// 	fmt.Println(arr[i])
-	// }
+	// sl := []int{100, 200, 300, 400}
+	// fmt.Println(sl)
 
-	// arr := [3]int{1, 2, 3}
-	// for i, v := range arr {
-	// 	fmt.Println(i, v)
-	// }
+	// // スライスは要素が可変長
+	// sl = append(sl, 500)
+	// fmt.Println(sl)
 
-	// sl := []string{"a", "b", "c"}
-	// for i, v := range sl {
-  //   fmt.Println(i, v)
-  // }
+	// sl = append(sl, 600, 700, 800)
+	// fmt.Println(sl)
 
-	// m := map[string]int{"a": 1, "b": 2, "c" : 3}
-	// for k, v := range m {
-  //   fmt.Println(k, v)
-  // }
+	// sl2 := make([]int, 5)
+	// fmt.Println(sl2)
 
-	// var x interface{} = 3.41
-	// i := x.(int)
-	// fmt.Println(i + 2)
+	// fmt.Println(len(sl2))
+	// fmt.Println(cap(sl2))
 
-	// f, isFloat64 := x.(float64)
-	// fmt.Println(f + 2, isFloat64)
+	// sl3 := make([]int, 5, 10)
+	// fmt.Println(sl3)
 
-	// if x == nil {
-	// 	fmt.Println("none")
-	// } else if i, isInt := x.(int); isInt {
-	// 	fmt.Println(i + 2)
-	// } else if f, isFloat := x.(float64); isFloat {
-	// 	fmt.Println(f + 2, isFloat)
-  // } else if s, isString := x.(string); isString {
-	// 	fmt.Println(s)
-	// } else {
-	// 	fmt.Println("unknown")
-	// }
+	// fmt.Println(len(sl3))
+	// fmt.Println(cap(sl3))
 
-	// anything(3.11)
+	// sl3 = append(sl3, 100, 200, 300, 400, 500)
+	// fmt.Println(sl3)
 
-	// defer
-	// TestDefer()
+	// copy
+// 	sl := []int{100, 200, 300, 400, 500}
+// 	sl2 := make([]int, 5, 10)
+// 	n := copy(sl2, sl)
+// // nはコピーした数
+// 	fmt.Println(n, sl2)
 
-	// // defer func() {
-	// // 	fmt.Println("1")
-	// // 	fmt.Println("2")
-	// // 	fmt.Println("3")
-	// // }()
+// sl := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
+// for i, v := range sl {
+// 	fmt.Println(i, v)
 
-	// RunDefer()
+// fmt.Println(Sum(1, 2, 3))
 
-	// file, err := os.Create("test.go")
-	// if err!= nil {
-  //   panic(err)
-  // }
-	// defer file.Close()
-	// file.Write([]byte("package main\n"))
+// sl := []int{100, 200, 300, 4}
+// fmt.Println(Sum(sl...))
 
-	// goroutin
-	go sub()
-	// go sub()
-	for {
-		fmt.Println("main")
-		time.Sleep(200 * time.Millisecond)
-	}
+// var m = map[string]int{"A": 100, "B": 200, "C": 300}
+// fmt.Println(m)
+
+// m2 := make(map[int]string)
+// fmt.Println(m2)
+
+// m2[1] = "japan"
+// m2[2] = "korea"
+// fmt.Println(m2)
+// fmt.Println(m2[1])
+
+// // ハンドリングもできる
+// // s, ok := m2[4]
+// // if !ok {
+// // 	fmt.Println("not found")
+// // }
+// // fmt.Println(s, ok)
+
+// m2[3] = "china"
+// fmt.Println(m2)
+
+// delete(m2, 3)
+
+m := map[string]int{"A": 100, "B": 20}
+for i, v := range m {
+	fmt.Println(i, v)
+}
 }
 
-// 初期化処理
-// func init() {
-// 	fmt.Println("init")
-// }
-// func init() {
-// 	fmt.Println("reinit")
-// }
-
-func sub() {
-	for {
-		fmt.Println("sub")
-		time.Sleep(100 * time.Millisecond)
-	}
-}
-
-func RunDefer() {
-	defer fmt.Println("1")
-	defer fmt.Println("2")
-	defer fmt.Println("3")
-}
-
-func TestDefer() {
-	defer fmt.Println("defer")
-	fmt.Println("START")
-}
-
-func anything(a interface{}) {
-	switch v:= a.(type) {
-	case int:
-		fmt.Println(v)
-	case float64:
-		fmt.Println(v + 1222)
-	case string:
-		fmt.Println(v)
-	default:
-		fmt.Println("unknown")
-}
+func Sum(s ...int) int {
+	total := 0
+  for _, v := range s {
+    total += v
+  }
+  return total
 }
