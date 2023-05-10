@@ -2,6 +2,9 @@
 ##  channel references for zenn
 https://zenn.dev/hsaki/books/golang-concurrency/viewer/chaninternal
 
+## address references for qiita
+https://qiita.com/gold-kou/items/0d1585fb8d687061c890
+
 ## channel 
 ### ch定義
 ```
