@@ -6,42 +6,55 @@ import (
 	// "os"
 )
 
+type User struct {
+	Name string
+	Age  int
+	// x, y float64
+}
+
 func main() {
-	var n int = 100
-	// fmt.Println(n)
+	var user1 User
+	fmt.Println(user1)
+	user1.Name = "John Doe"
+	user1.Age = 10
+	fmt.Println(user1)
 
-	// fmt.Println(&n)
+	user2 := User{}
+	fmt.Println(user2)
 
-	// Double(n)
-	// fmt.Println(n)
+	user3 := User{Name: "aaa", Age: 12}
+	fmt.Println(user3)
 
-	var p *int = &n
-	// fmt.Println(p)
-	// fmt.Println(*p)
+	// 構造体の順番に従う必要あり
+	// User{12, "test"}はNG
+	user4 := User{"bbb", 13}
+	fmt.Println(user4)
 
-	// *p = 300
-	// n = 200
-  Doublev2(&n)
-	fmt.Println(n)
-	fmt.Println(*p)
+	user5 := User{Name: "ccc"}
+	fmt.Println(user5)
 
-	var sl []int = []int{1, 2, 3, 4, 5, 6}
-	Doublev3(sl)
-	fmt.Println(sl)
+	// 構造体のポインタ型を返す
+	user6 := new(User)
+	fmt.Println(user6)
+
+	user7 := &User{}
+	fmt.Println(user7)
+
+	UpdateUser(user1)
+	UpdateUser2(user7)
+
+	fmt.Println(user1)
+	fmt.Println(user7)
 }
 
-func Doublev3(s []int) {
-  for i, v := range s {
-		s[i] = v * 2
-	}
+// 構造体
+func UpdateUser(user User) {
+	user.Name = "test"
+	user.Age = 12
 }
 
-func Double(i int) {
-	i = i*2
+// 参照渡し
+func UpdateUser2(user *User) {
+	user.Name = "test"
+	user.Age = 12
 }
-
-func Doublev2(i *int) {
-	*i = *i * 2
-}
-
-
