@@ -6,42 +6,81 @@ import (
 	// "os"
 )
 
+type T struct {
+	User User
+}
+
+type User struct {
+	Name string
+	Age  int
+	// x, y float64
+}
+
+type MyInt int
+
+func (u User) SayName() {
+	fmt.Println(u.Name)
+}
+
+func (u *User) SetName() {
+	u.Name = "tttt"
+}
+
+// User型を返すコンストラクタ関数でUser型のポインタを生成
+func NewUser(name string, age int) *User {
+	return &User{
+    Name: name,
+    Age:  age,
+  }
+}
+
+type Users []*User
+
 func main() {
-	var n int = 100
-	// fmt.Println(n)
+	user1 := NewUser("user1", 10)
+	fmt.Println(user1)
+	fmt.Println(*user1)
 
-	// fmt.Println(&n)
+	user2 := User{"user2", 20}
+	user3 := User{"user3", 30}
+	user4 := User{"user4", 40}
+	user5 := User{"user5", 50}
 
-	// Double(n)
-	// fmt.Println(n)
+	users := Users{}
 
-	var p *int = &n
-	// fmt.Println(p)
-	// fmt.Println(*p)
+	users = append(users, &user2, &user3, &user4 ,&user5)
+	
+	// for _, V := range users {
+	// 	fmt.Println(V)
+	// }
 
-	// *p = 300
-	// n = 200
-  Doublev2(&n)
-	fmt.Println(n)
-	fmt.Println(*p)
+	users2 := make([]*User, 0)
+	users2 = append(users2, &user2, &user3, &user4,&user5)
 
-	var sl []int = []int{1, 2, 3, 4, 5, 6}
-	Doublev3(sl)
-	fmt.Println(sl)
-}
+	for _, V := range users2 {
+    fmt.Println(V)
+  }
 
-func Doublev3(s []int) {
-  for i, v := range s {
-		s[i] = v * 2
+	m := map[int]User{
+		1: {Name: "test", Age: 10},
+    2: {Name: "test2", Age: 20},
 	}
+	fmt.Println(m)
+
+	m2 := map[User]string{
+		{Name: "test", Age: 10}: "tokyo",
+		{Name: "test2", Age: 20}: "chiba",
+	}
+	fmt.Println(m2)
+
+	m3 := make(map[int]User)
+	m3[1] = User{Name: "test", Age: 10}
+	m3[2] = User{Name: "test2", Age: 20}
+	m3[3] = User{Name: "test3", Age: 30}
+	fmt.Println(m3)
+
+	var mi MyInt
+	mi = 10
+	fmt.Println(mi)
+	fmt.Println(
 }
-
-func Double(i int) {
-	i = i*2
-}
-
-func Doublev2(i *int) {
-	*i = *i * 2
-}
-
-
