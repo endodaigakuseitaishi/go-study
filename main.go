@@ -6,81 +6,73 @@ import (
 	// "os"
 )
 
-type T struct {
-	User User
+type Stringfy interface {
+	ToString() string
 }
 
-type User struct {
+type Person struct {
 	Name string
 	Age  int
-	// x, y float64
 }
 
-type MyInt int
-
-func (u User) SayName() {
-	fmt.Println(u.Name)
+func (p *Person) ToString() string {
+	return fmt.Sprintf("Name=%v, Age=%v", p.Name, p.Age)
 }
 
-func (u *User) SetName() {
-	u.Name = "tttt"
+type Car struct {
+	Number string
+	Model string
 }
 
-// User型を返すコンストラクタ関数でUser型のポインタを生成
-func NewUser(name string, age int) *User {
-	return &User{
-    Name: name,
-    Age:  age,
+func (c *Car) ToString() string {
+  return fmt.Sprintf("Number=%v, Model=%v", c.Number, c.Model)
+}
+
+type myError struct {
+	Message string
+	ErrorCode int
+}
+
+type Point struct {
+	A int
+	B string
+}
+
+func(e *myError) Error() string {
+	return e.Message
+}
+
+func RaiseError() error {
+	return &myError{
+    Message: "Something went wrong",
+    ErrorCode: 100,
   }
 }
-
-type Users []*User
 
 func main() {
-	user1 := NewUser("user1", 10)
-	fmt.Println(user1)
-	fmt.Println(*user1)
+	vs := []Stringfy{
+		&Person{
+      Name: "John Doe",
+      Age:  18,
+    },
+    &Car{
+      Number: "123456789",
+      Model:  "Brown",
+    },
+	}
 
-	user2 := User{"user2", 20}
-	user3 := User{"user3", 30}
-	user4 := User{"user4", 40}
-	user5 := User{"user5", 50}
-
-	users := Users{}
-
-	users = append(users, &user2, &user3, &user4 ,&user5)
-	
-	// for _, V := range users {
-	// 	fmt.Println(V)
-	// }
-
-	users2 := make([]*User, 0)
-	users2 = append(users2, &user2, &user3, &user4,&user5)
-
-	for _, V := range users2 {
-    fmt.Println(V)
+	for _, v := range vs {
+    fmt.Println(v.ToString())
   }
 
-	m := map[int]User{
-		1: {Name: "test", Age: 10},
-    2: {Name: "test2", Age: 20},
-	}
-	fmt.Println(m)
+	err := RaiseError()
+	fmt.Println(err.Error())
 
-	m2 := map[User]string{
-		{Name: "test", Age: 10}: "tokyo",
-		{Name: "test2", Age: 20}: "chiba",
-	}
-	fmt.Println(m2)
+	e, ok := err.(*myError)
+	if ok {
+    fmt.Println(e.ErrorCode)
+  }
 
-	m3 := make(map[int]User)
-	m3[1] = User{Name: "test", Age: 10}
-	m3[2] = User{Name: "test2", Age: 20}
-	m3[3] = User{Name: "test3", Age: 30}
-	fmt.Println(m3)
-
-	var mi MyInt
-	mi = 10
-	fmt.Println(mi)
-	fmt.Println(
+	p := &Point{100, "123"}
+	fmt.Println(p)
 }
